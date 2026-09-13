@@ -18,42 +18,23 @@ def compress_image():
     img = Image.open(file.stream)
     if img.mode in ('RGBA', 'LA'): img = img.convert('RGB')
 
-    # معالجة وحفظ الصورة في الذاكرة
     img_io = io.BytesIO()
     img.save(img_io, 'JPEG', quality=60, optimize=True)
     img_io.seek(0)
     
-    # التحديث السحري: إرسال الملف بطريقة البث (Stream) المباشر المتوافقة مع السيرفرات السحابية
     return send_file(
         img_io, 
         mimetype='image/jpeg', 
         as_attachment=True, 
         download_name='compressed_image.jpg',
-        conditional=True # يمنح المتصفح والسيرفر استقراراً كاملاً أثناء تدفق التنزيل
+        conditional=True
     )
 
-@app.route('/remove-bg', methods=['POST'])
-def remove_background():
-    if 'image' not in request.files: return "لم يتم رفع أي صورة", 400
-    file = request.files['image']
-    if file.filename == '': return "اسم الملف غير صحيح", 400
+@app.route('/privacy-policy')
+def privacy_policy(): return render_template('privacy.html')
 
-    from rembg import remove 
-
-    input_image = Image.open(file.stream)
-    output_image = remove(input_image)
-
-    img_io = io.BytesIO()
-    output_image.save(img_io, 'PNG')
-    img_io.seek(0)
-    
-    return send_file(
-        img_io, 
-        mimetype='image/png', 
-        as_attachment=True, 
-        download_name='no_bg_image.png',
-        conditional=True # لمنع خطأ 502 عند تنزيل الصور الشفافة
-    )
+@app.route('/terms')
+def terms(): return render_template('terms.html')
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
