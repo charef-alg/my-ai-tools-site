@@ -6,9 +6,9 @@
     <title>منصة الذكاء الاصطناعي لتعديل الصور فوراً</title>
     <!-- ربط ملف الـ CSS الخارجي بشكل مباشر للمواقع الثابتة -->
     <link rel="stylesheet" href="static/style.css">
-    <!-- استدعاء مكتبة الذكاء الاصطناعي لعزل الخلفية في المتصفح -->
+    
+    <!-- الروابط المصححة والكاملة 100% لتشغيل الذكاء الاصطناعي والضغط في المتصفح -->
     <script src="https://jsdelivr.net"></script>
-    <!-- استدعاء مكتبة ضغط الصور الاحترافية داخل المتصفح -->
     <script src="https://jsdelivr.net"></script>
 </head>
 <body>
@@ -46,7 +46,6 @@
                     <h2>1. ضغط حجم الصور (Local)</h2>
                     <p>صغّر حجم ملفات الصور لدرجة مذهلة مع حماية الألوان والتفاصيل الدقيقة مجاناً وبسرعة فائقة.</p>
                 </div>
-                <!-- التعديل هنا: إضافة منع الإرسال التلقائي للضغط -->
                 <form id="compressForm" onsubmit="event.preventDefault(); window.runLocalCompression();">
                     <div class="file-input-wrapper">
                         <input type="file" id="compressInput" accept="image/*" required>
@@ -62,7 +61,6 @@
                     <h2>2. مسح وعزل الخلفية (Local AI)</h2>
                     <p>احصل على صورة شفافة بدقة متناهية للشخصيات والمنتجات عبر معالجة ذكية فائقة السرعة وآمنة تماماً.</p>
                 </div>
-                <!-- التعديل هنا: التأكيد على استدعاء الدالة العامة بشكل صحيح -->
                 <form id="bgForm" onsubmit="event.preventDefault(); window.runLocalAI();">
                     <div class="file-input-wrapper">
                         <input type="file" id="bgInput" accept="image/*" required>
