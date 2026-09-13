@@ -4,16 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة الذكاء الاصطناعي لتعديل الصور فوراً</title>
-    <!-- ربط ملف الـ CSS الخارجي بشكل مباشر للمواقع الثابتة -->
-    <link rel="stylesheet" href="static/style.css">
     
-    <!-- الروابط المصححة والكاملة 100% لتشغيل الذكاء الاصطناعي والضغط في المتصفح -->
+    <!-- روابط مكتبات الذكاء الاصطناعي والضغط المباشرة والمضمونة 100% للمتصفح -->
     <script src="https://jsdelivr.net"></script>
     <script src="https://jsdelivr.net"></script>
+
+    <style>
+        /* كود التنسيق والألوان الاحترافي المضمون لعدم الانهيار */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0f172a;
+            color: #f1f5f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        header {
+            border-bottom: 1px solid #334155;
+            background-color: #1e293b;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-size: 22px; font-weight: 900; color: #38bdf8; }
+        .container { max-width: 900px; width: 90%; margin: 30px auto; text-align: center; }
+        h1 { font-size: 38px; font-weight: 800; margin-bottom: 10px; color: #ffffff; }
+        .subtitle { color: #94a3b8; font-size: 16px; margin-bottom: 30px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .card { background-color: #1e293b; border: 1px solid #334155; border-radius: 20px; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.3s ease; }
+        .card:hover { border-color: #38bdf8; box-shadow: 0 10px 30px rgba(56, 189, 248, 0.1); }
+        .card h2 { font-size: 20px; margin-top: 0; color: #ffffff; }
+        .card p { color: #94a3b8; font-size: 14px; line-height: 1.6; margin-bottom: 25px; }
+        .file-input-wrapper { background-color: #0f172a; border: 1px dashed #475569; border-radius: 10px; padding: 12px; margin-bottom: 15px; position: relative; text-align: center; }
+        .file-input-wrapper input[type="file"] { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+        .file-label { font-size: 13px; color: #cbd5e1; }
+        .btn { width: 100%; background: linear-gradient(to right, #2563eb, #3b82f6); color: white; border: none; padding: 12px; font-size: 14px; font-weight: 600; border-radius: 10px; cursor: pointer; transition: background 0.2s; }
+        .btn:hover { background: #2563eb; }
+        .btn-emerald { background: linear-gradient(to right, #059669, #10b981); }
+        .btn-emerald:hover { background: #059669; }
+        
+        /* شاشة السبلاش والتعتيم الكامل للموقع */
+        .splash-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(15, 23, 42, 0.9); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; }
+        .splash-card { background-color: #1e293b; border: 1px solid #334155; padding: 40px; border-radius: 24px; width: 90%; max-width: 450px; text-align: center; }
+        .splash-title { font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
+        .splash-file-name { font-size: 14px; color: #38bdf8; margin-bottom: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .progress-bar-container { width: 100%; background-color: #0f172a; height: 10px; border-radius: 5px; overflow: hidden; }
+        .progress-bar { width: 0%; height: 100%; background: linear-gradient(to right, #38bdf8, #2563eb); border-radius: 5px; transition: width 0.3s ease; }
+        .spinner { width: 40px; height: 40px; border: 4px solid #334155; border-top-color: #38bdf8; border-radius: 50%; margin: 0 auto 20px auto; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .ads-box { background-color: #1e293b; border: 2px dashed #475569; color: #64748b; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin: 25px auto; }
+        .ads-top, .ads-bottom { max-width: 728px; height: 90px; }
+        footer { border-top: 1px solid #334155; padding: 20px; text-align: center; font-size: 12px; color: #64748b; }
+    </style>
 </head>
 <body>
 
-    <!-- شاشة السبلاش المقفلة (تظهر أثناء المعالجة) -->
+    <!-- شاشة السبلاش المقفلة الفاخرة المدمجة -->
     <div id="splashScreen" class="splash-overlay">
         <div class="splash-card">
             <div class="spinner"></div>
@@ -22,11 +72,11 @@
             <div class="progress-bar-container">
                 <div id="splashProgressBar" class="progress-bar"></div>
             </div>
-            <p style="color: #64748b; font-size: 11px; margin-top: 15px;">الرجاء عدم إغلاق الصفحة، المعالجة تتم محلياً بجهازك بأمان وسرعة</p>
+            <p style="color: #64748b; font-size: 11px; margin-top: 15px; margin-bottom: 0;">الرجاء عدم إغلاق الصفحة، المعالجة تتم محلياً بجهازك بأمان وسرعة</p>
         </div>
     </div>
 
-    <!-- شريط الرأس -->
+    <!-- شريط الرأس (Header) -->
     <header>
         <div class="logo">✨ فوتو دوت كوم</div>
         <div style="color: #94a3b8; font-size: 14px;">أدوات ذكية مجانية</div>
@@ -39,8 +89,10 @@
         <h1>عدّل صورك بالذكاء الاصطناعي في ثوانٍ</h1>
         <p class="subtitle">منصة سريعة ومجانية تماماً لضغط الصور وعزل الخلفيات بجودة احترافية.</p>
 
+        <!-- شبكة كروت الأدوات الذكية -->
         <div class="grid">
-            <!-- 1. أداة ضغط الصور المحدثة لمنع التوجيه -->
+            
+            <!-- 1. كارت أداة ضغط الصور المحلي 100% -->
             <div class="card">
                 <div>
                     <h2>1. ضغط حجم الصور (Local)</h2>
@@ -55,7 +107,7 @@
                 </form>
             </div>
 
-            <!-- 2. أداة إزالة الخلفية المحدثة لمنع التوجيه -->
+            <!-- 2. كارت أداة إزالة الخلفية بالذكاء الاصطناعي المحلي 100% -->
             <div class="card">
                 <div>
                     <h2>2. مسح وعزل الخلفية (Local AI)</h2>
@@ -69,21 +121,132 @@
                     <button type="submit" id="bgBtn" class="btn btn-emerald">عزل الخلفية وتحميل فوري ✨</button>
                 </form>
             </div>
+
         </div>
 
         <!-- المساحة الإعلانية السفلية -->
         <div class="ads-box ads-bottom">مساحة إعلانية مخصصة (جوجل أدسينس - 728x90)</div>
     </div>
 
+    <!-- تذييل الصفحة والقوانين الإلزامية لأدسينس -->
     <footer>
         <p style="margin-bottom: 10px;">
             <a href="privacy.html" style="color: #94a3b8; text-decoration: none; margin: 0 10px;">سياسة الخصوصية</a> | 
             <a href="terms.html" style="color: #94a3b8; text-decoration: none; margin: 0 10px;">شروط الاستخدام</a>
         </p>
-        <p>© 2026 جميع الحقوق محفوظة لـ فوتو دوت كوم. </p>
+        <p>© 2026 جميع الحقوق محفوظة لـ فوتو دوت كوم. صُنع بالكامل بتقنيات المعالجة المحلية العميقة.</p>
     </footer>
+    <script>
+        const splashScreen = document.getElementById('splashScreen');
+        const splashTitle = document.getElementById('splashTitle');
+        const splashFileName = document.getElementById('splashFileName');
+        const splashProgressBar = document.getElementById('splashProgressBar');
 
-    <!-- ربط ملف الجافاسكريبت الخارجي بشكل مباشر للمواقع الثابتة -->
-    <script src="static/script.js"></script>
+        // تحديث النصوص عند اختيار الصورة لأداة الضغط
+        const compressInput = document.getElementById('compressInput');
+        const compressLabel = document.getElementById('compressLabel');
+        if (compressInput) {
+            compressInput.addEventListener('change', function() {
+                if(this.files.length > 0) compressLabel.innerText = "✅ تم اختيار: " + this.files[0].name;
+            });
+        }
+
+        // تحديث النصوص عند اختيار الصورة لأداة عزل الخلفية
+        const bgInput = document.getElementById('bgInput');
+        const bgLabel = document.getElementById('bgLabel');
+        if (bgInput) {
+            bgInput.addEventListener('change', function() {
+                if(this.files.length > 0) bgLabel.innerText = "✅ تم اختيار: " + this.files[0].name;
+            });
+        }
+
+        // دالة ضغط الصور محلياً 100% داخل المتصفح
+        async function runLocalCompression() {
+            const file = compressInput.files[0];
+            if (!file) return;
+
+            splashTitle.innerText = "⚡ جاري ضغط مساحة الصورة وتحسينها...";
+            splashFileName.innerText = `📄 ملف: ${file.name}`;
+            splashProgressBar.style.width = '10%';
+            splashScreen.style.display = 'flex';
+
+            const options = {
+                maxSizeMB: 1,
+                maxWidthOrHeight: 1920,
+                useWebWorker: true,
+                onProgress: function(p) { splashProgressBar.style.width = p + '%'; }
+            };
+
+            try {
+                const compressedFile = await imageCompression(file, options);
+                splashProgressBar.style.width = '100%';
+
+                const url = URL.createObjectURL(compressedFile);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'compressed_' + file.name;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                setTimeout(() => { splashScreen.style.display = 'none'; }, 500);
+            } catch (error) {
+                console.error(error);
+                alert("حدث خطأ أثناء ضغط الصورة.");
+                splashScreen.style.display = 'none';
+            }
+        }
+
+        // دالة عزل الخلفية محلياً بالذكاء الاصطناعي 100% داخل المتصفح
+        async function runLocalAI() {
+            const file = bgInput.files[0];
+            if (!file) return;
+
+            splashTitle.innerText = "✨ ذكاء اصطناعي محلي: جاري عزل الخلفية بدقة...";
+            splashFileName.innerText = `📄 ملف: ${file.name}`;
+            splashProgressBar.style.width = '10%';
+            splashScreen.style.display = 'flex';
+
+            try {
+                let progressWidth = 10;
+                const progressInterval = setInterval(() => {
+                    if(progressWidth < 85) { progressWidth += 3; splashProgressBar.style.width = progressWidth + '%'; }
+                }, 300);
+
+                const imageBlob = await imglyBackgroundRemoval(file, {
+                    progress: (handle, current, total) => {
+                        let realProgress = Math.round((current / total) * 100);
+                        if (realProgress > 0) {
+                            clearInterval(progressInterval);
+                            splashProgressBar.style.width = realProgress + '%';
+                        }
+                    }
+                });
+
+                clearInterval(progressInterval);
+                splashProgressBar.style.width = '100%';
+
+                const url = URL.createObjectURL(imageBlob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'no_bg_' + file.name.split('.')[0] + '.png';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                setTimeout(() => { splashScreen.style.display = 'none'; }, 600);
+            } catch (error) {
+                console.error(error);
+                alert("حدث خطأ أثناء معالجة الخلفية.");
+                splashScreen.style.display = 'none';
+            }
+        }
+
+        // إتاحة الدوال للنطاق العام ليتعرف عليها الـ HTML فوراً
+        window.runLocalCompression = runLocalCompression;
+        window.runLocalAI = runLocalAI;
+    </script>
 </body>
 </html>
