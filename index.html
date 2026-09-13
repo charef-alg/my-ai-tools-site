@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة الذكاء الاصطناعي لتعديل الصور فوراً</title>
-    <!-- ربط ملف الـ CSS الخارجي -->
-    <link rel="stylesheet" href="../static/style.css">
+    <!-- ربط ملف الـ CSS الخارجي بشكل مباشر للمواقع الثابتة -->
+    <link rel="stylesheet" href="static/style.css">
     <!-- استدعاء مكتبة الذكاء الاصطناعي لعزل الخلفية في المتصفح -->
     <script src="https://jsdelivr.net"></script>
     <!-- استدعاء مكتبة ضغط الصور الاحترافية داخل المتصفح -->
@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <!-- شاشة السبلاش المقفلة -->
+    <!-- شاشة السبلاش المقفلة (تظهر أثناء المعالجة) -->
     <div id="splashScreen" class="splash-overlay">
         <div class="splash-card">
             <div class="spinner"></div>
@@ -40,7 +40,7 @@
         <p class="subtitle">منصة سريعة ومجانية تماماً لضغط الصور وعزل الخلفيات بجودة احترافية.</p>
 
         <div class="grid">
-            <!-- أداة ضغط الصور (أصبحت تعمل محلياً بالكامل الآن) -->
+            <!-- أداة ضغط الصور (تعمل محلياً بالكامل) -->
             <div class="card">
                 <div>
                     <h2>1. ضغط حجم الصور (Local)</h2>
@@ -77,13 +77,13 @@
 
     <footer>
         <p style="margin-bottom: 10px;">
-            <a href="/privacy-policy" style="color: #94a3b8; text-decoration: none; margin: 0 10px;">سياسة الخصوصية</a> | 
-            <a href="/terms" style="color: #94a3b8; text-decoration: none; margin: 0 10px;">شروط الاستخدام</a>
+            <a href="privacy.html" style="color: #94a3b8; text-decoration: none; margin: 0 10px;">سياسة الخصوصية</a> | 
+            <a href="terms.html" style="color: #94a3b8; text-decoration: none; margin: 0 10px;">شروط الاستخدام</a>
         </p>
         <p>© 2026 جميع الحقوق محفوظة لـ فوتو دوت كوم. صُنع بالكامل بتقنيات المعالجة المحلية العميقة.</p>
     </footer>
 
-    <!-- ربط ملف الجافاسكريبت الخارجي -->
-    <script src="../static/script.js"></script>
+    <!-- ربط ملف الجافاسكريبت الخارجي بشكل مباشر للمواقع الثابتة -->
+    <script src="static/script.js"></script>
 </body>
 </html>
