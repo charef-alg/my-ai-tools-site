@@ -40,13 +40,14 @@
         <p class="subtitle">منصة سريعة ومجانية تماماً لضغط الصور وعزل الخلفيات بجودة احترافية.</p>
 
         <div class="grid">
-            <!-- أداة ضغط الصور (تعمل محلياً بالكامل) -->
+            <!-- 1. أداة ضغط الصور المحدثة لمنع التوجيه -->
             <div class="card">
                 <div>
                     <h2>1. ضغط حجم الصور (Local)</h2>
                     <p>صغّر حجم ملفات الصور لدرجة مذهلة مع حماية الألوان والتفاصيل الدقيقة مجاناً وبسرعة فائقة.</p>
                 </div>
-                <form id="compressForm" onsubmit="event.preventDefault(); runLocalCompression();">
+                <!-- التعديل هنا: إضافة منع الإرسال التلقائي للضغط -->
+                <form id="compressForm" onsubmit="event.preventDefault(); window.runLocalCompression();">
                     <div class="file-input-wrapper">
                         <input type="file" id="compressInput" accept="image/*" required>
                         <span class="file-label" id="compressLabel">📁 اختر ملف الصورة من جهازك...</span>
@@ -55,13 +56,14 @@
                 </form>
             </div>
 
-            <!-- أداة إزالة الخلفية (تعمل بالذكاء الاصطناعي المحلي) -->
+            <!-- 2. أداة إزالة الخلفية المحدثة لمنع التوجيه -->
             <div class="card">
                 <div>
                     <h2>2. مسح وعزل الخلفية (Local AI)</h2>
                     <p>احصل على صورة شفافة بدقة متناهية للشخصيات والمنتجات عبر معالجة ذكية فائقة السرعة وآمنة تماماً.</p>
                 </div>
-                <form id="bgForm" onsubmit="event.preventDefault(); runLocalAI();">
+                <!-- التعديل هنا: التأكيد على استدعاء الدالة العامة بشكل صحيح -->
+                <form id="bgForm" onsubmit="event.preventDefault(); window.runLocalAI();">
                     <div class="file-input-wrapper">
                         <input type="file" id="bgInput" accept="image/*" required>
                         <span class="file-label" id="bgLabel">🖼️ اختر ملف الصورة من جهازك...</span>
@@ -80,7 +82,7 @@
             <a href="privacy.html" style="color: #94a3b8; text-decoration: none; margin: 0 10px;">سياسة الخصوصية</a> | 
             <a href="terms.html" style="color: #94a3b8; text-decoration: none; margin: 0 10px;">شروط الاستخدام</a>
         </p>
-        <p>© 2026 جميع الحقوق محفوظة لـ فوتو دوت كوم. صُنع بالكامل بتقنيات المعالجة المحلية العميقة.</p>
+        <p>© 2026 جميع الحقوق محفوظة لـ فوتو دوت كوم. </p>
     </footer>
 
     <!-- ربط ملف الجافاسكريبت الخارجي بشكل مباشر للمواقع الثابتة -->
