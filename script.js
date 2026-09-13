@@ -106,3 +106,6 @@ async function runLocalAI() {
         splashScreen.style.display = 'none';
     }
 }
+// ربط الدوال بنطاق المتصفح العام لكي يراها ملف الـ HTML
+window.runLocalCompression = runLocalCompression;
+window.runLocalAI = runLocalAI;
