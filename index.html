@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة الذكاء الاصطناعي لتعديل الصور فوراً</title>
     <!-- ربط ملف الـ CSS الخارجي -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <!-- استدعاء مكتبة الذكاء الاصطناعي للـ المتصفح -->
+    <link rel="stylesheet" href="../static/style.css">
+    <!-- استدعاء مكتبة الذكاء الاصطناعي لعزل الخلفية في المتصفح -->
+    <script src="https://jsdelivr.net"></script>
+    <!-- استدعاء مكتبة ضغط الصور الاحترافية داخل المتصفح -->
     <script src="https://jsdelivr.net"></script>
 </head>
 <body>
@@ -38,22 +40,22 @@
         <p class="subtitle">منصة سريعة ومجانية تماماً لضغط الصور وعزل الخلفيات بجودة احترافية.</p>
 
         <div class="grid">
-            <!-- أداة ضغط الصور -->
+            <!-- أداة ضغط الصور (أصبحت تعمل محلياً بالكامل الآن) -->
             <div class="card">
                 <div>
-                    <h2>1. ضغط حجم الصور</h2>
+                    <h2>1. ضغط حجم الصور (Local)</h2>
                     <p>صغّر حجم ملفات الصور لدرجة مذهلة مع حماية الألوان والتفاصيل الدقيقة مجاناً وبسرعة فائقة.</p>
                 </div>
-                <form id="compressForm" action="/compress" method="POST" enctype="multipart/form-data">
+                <form id="compressForm" onsubmit="event.preventDefault(); runLocalCompression();">
                     <div class="file-input-wrapper">
-                        <input type="file" id="compressInput" name="image" accept="image/*" required>
+                        <input type="file" id="compressInput" accept="image/*" required>
                         <span class="file-label" id="compressLabel">📁 اختر ملف الصورة من جهازك...</span>
                     </div>
-                    <button type="submit" class="btn">تنفيذ وضغط الصورة ⚡</button>
+                    <button type="submit" id="compressBtn" class="btn">تنفيذ وضغط الصورة ⚡</button>
                 </form>
             </div>
 
-            <!-- أداة إزالة الخلفية المدعومة بالذكاء الاصطناعي للمتصفح -->
+            <!-- أداة إزالة الخلفية (تعمل بالذكاء الاصطناعي المحلي) -->
             <div class="card">
                 <div>
                     <h2>2. مسح وعزل الخلفية (Local AI)</h2>
@@ -64,7 +66,7 @@
                         <input type="file" id="bgInput" accept="image/*" required>
                         <span class="file-label" id="bgLabel">🖼️ اختر ملف الصورة من جهازك...</span>
                     </div>
-                    <button type="submit" class="btn btn-emerald">عزل الخلفية وتحميل فوري ✨</button>
+                    <button type="submit" id="bgBtn" class="btn btn-emerald">عزل الخلفية وتحميل فوري ✨</button>
                 </form>
             </div>
         </div>
@@ -78,10 +80,10 @@
             <a href="/privacy-policy" style="color: #94a3b8; text-decoration: none; margin: 0 10px;">سياسة الخصوصية</a> | 
             <a href="/terms" style="color: #94a3b8; text-decoration: none; margin: 0 10px;">شروط الاستخدام</a>
         </p>
-        <p>© 2026 جميع الحقوق محفوظة لـ فوتو دوت كوم. صُنع بالذكاء الاصطناعي المحلي.</p>
+        <p>© 2026 جميع الحقوق محفوظة لـ فوتو دوت كوم. صُنع بالكامل بتقنيات المعالجة المحلية العميقة.</p>
     </footer>
 
-    <!-- ربط ملف الجافاسكريبت الخارجي عبر Flask بشكل احترافي -->
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!-- ربط ملف الجافاسكريبت الخارجي -->
+    <script src="../static/script.js"></script>
 </body>
 </html>
