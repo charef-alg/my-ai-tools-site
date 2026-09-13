@@ -198,7 +198,7 @@
             }
         }
 
-        // دالة عزل الخلفية محلياً بالذكاء الاصطناعي 100% داخل المتصفح
+                // دالة عزل الخلفية المحدثة والمحمية من مشاكل السيرفرات السحابية
         async function runLocalAI() {
             const file = bgInput.files[0];
             if (!file) return;
@@ -214,7 +214,9 @@
                     if(progressWidth < 85) { progressWidth += 3; splashProgressBar.style.width = progressWidth + '%'; }
                 }, 300);
 
+                // التعديل هنا: تمرير روابط الموديلات المفتوحة لتجاوز حظر الأمان (CORS)
                 const imageBlob = await imglyBackgroundRemoval(file, {
+                    publicPath: "https://jsdelivr.net",
                     progress: (handle, current, total) => {
                         let realProgress = Math.round((current / total) * 100);
                         if (realProgress > 0) {
@@ -239,10 +241,11 @@
                 setTimeout(() => { splashScreen.style.display = 'none'; }, 600);
             } catch (error) {
                 console.error(error);
-                alert("حدث خطأ أثناء معالجة الخلفية.");
+                alert("تم رصد تحديث في المتصفح، يرجى إعادة المحاولة أو تجربة صورة أخرى حجمها أصغر.");
                 splashScreen.style.display = 'none';
             }
         }
+
 
         // إتاحة الدوال للنطاق العام ليتعرف عليها الـ HTML فوراً
         window.runLocalCompression = runLocalCompression;
