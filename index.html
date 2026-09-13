@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة الذكاء الاصطناعي لتعديل الصور فوراً</title>
     
-    <!-- روابط مكتبات الذكاء الاصطناعي والضغط المباشرة والمضمونة 100% للمتصفح -->
+    <!-- مكتبة الضغط ومكتبة عزل الخلفية المحلية المستقرة والخفيفة للمتصفح -->
+    <script src="https://jsdelivr.net"></script>
     <script src="https://jsdelivr.net"></script>
     <script src="https://jsdelivr.net"></script>
 
     <style>
-        /* كود التنسيق والألوان الاحترافي المضمون لعدم الانهيار */
         body {
             margin: 0;
             padding: 0;
@@ -47,7 +49,6 @@
         .btn-emerald { background: linear-gradient(to right, #059669, #10b981); }
         .btn-emerald:hover { background: #059669; }
         
-        /* شاشة السبلاش والتعتيم الكامل للموقع */
         .splash-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(15, 23, 42, 0.9); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; }
         .splash-card { background-color: #1e293b; border: 1px solid #334155; padding: 40px; border-radius: 24px; width: 90%; max-width: 450px; text-align: center; }
         .splash-title { font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
@@ -61,9 +62,9 @@
         footer { border-top: 1px solid #334155; padding: 20px; text-align: center; font-size: 12px; color: #64748b; }
     </style>
 </head>
+
 <body>
 
-    <!-- شاشة السبلاش المقفلة الفاخرة المدمجة -->
     <div id="splashScreen" class="splash-overlay">
         <div class="splash-card">
             <div class="spinner"></div>
@@ -72,27 +73,22 @@
             <div class="progress-bar-container">
                 <div id="splashProgressBar" class="progress-bar"></div>
             </div>
-            <p style="color: #64748b; font-size: 11px; margin-top: 15px; margin-bottom: 0;">الرجاء عدم إغلاق الصفحة، المعالجة تتم محلياً بجهازك بأمان وسرعة</p>
+            <p style="color: #64748b; font-size: 11px; margin-top: 15px; margin-bottom: 0;">المعالجة تتم محلياً بجهازك بأمان وسرعة</p>
         </div>
     </div>
 
-    <!-- شريط الرأس (Header) -->
     <header>
         <div class="logo">✨ فوتو دوت كوم</div>
         <div style="color: #94a3b8; font-size: 14px;">أدوات ذكية مجانية</div>
     </header>
 
     <div class="container">
-        <!-- المساحة الإعلانية العلوية -->
         <div class="ads-box ads-top">مساحة إعلانية مخصصة (جوجل أدسينس - 728x90)</div>
 
         <h1>عدّل صورك بالذكاء الاصطناعي في ثوانٍ</h1>
         <p class="subtitle">منصة سريعة ومجانية تماماً لضغط الصور وعزل الخلفيات بجودة احترافية.</p>
 
-        <!-- شبكة كروت الأدوات الذكية -->
         <div class="grid">
-            
-            <!-- 1. كارت أداة ضغط الصور المحلي 100% -->
             <div class="card">
                 <div>
                     <h2>1. ضغط حجم الصور (Local)</h2>
@@ -107,7 +103,6 @@
                 </form>
             </div>
 
-            <!-- 2. كارت أداة إزالة الخلفية بالذكاء الاصطناعي المحلي 100% -->
             <div class="card">
                 <div>
                     <h2>2. مسح وعزل الخلفية (Local AI)</h2>
@@ -121,20 +116,17 @@
                     <button type="submit" id="bgBtn" class="btn btn-emerald">عزل الخلفية وتحميل فوري ✨</button>
                 </form>
             </div>
-
         </div>
 
-        <!-- المساحة الإعلانية السفلية -->
         <div class="ads-box ads-bottom">مساحة إعلانية مخصصة (جوجل أدسينس - 728x90)</div>
     </div>
 
-    <!-- تذييل الصفحة والقوانين الإلزامية لأدسينس -->
     <footer>
         <p style="margin-bottom: 10px;">
             <a href="privacy.html" style="color: #94a3b8; text-decoration: none; margin: 0 10px;">سياسة الخصوصية</a> | 
             <a href="terms.html" style="color: #94a3b8; text-decoration: none; margin: 0 10px;">شروط الاستخدام</a>
         </p>
-        <p>© 2026 جميع الحقوق محفوظة لـ فوتو دوت كوم. صُنع بالكامل بتقنيات المعالجة المحلية العميقة.</p>
+        <p>© 2026 جميع الحقوق محفوظة لـ فوتو دوت كوم.</p>
     </footer>
     <script>
         const splashScreen = document.getElementById('splashScreen');
@@ -142,7 +134,6 @@
         const splashFileName = document.getElementById('splashFileName');
         const splashProgressBar = document.getElementById('splashProgressBar');
 
-        // تحديث النصوص عند اختيار الصورة لأداة الضغط
         const compressInput = document.getElementById('compressInput');
         const compressLabel = document.getElementById('compressLabel');
         if (compressInput) {
@@ -151,7 +142,6 @@
             });
         }
 
-        // تحديث النصوص عند اختيار الصورة لأداة عزل الخلفية
         const bgInput = document.getElementById('bgInput');
         const bgLabel = document.getElementById('bgLabel');
         if (bgInput) {
@@ -160,7 +150,6 @@
             });
         }
 
-        // دالة ضغط الصور محلياً 100% داخل المتصفح
         async function runLocalCompression() {
             const file = compressInput.files[0];
             if (!file) return;
@@ -198,58 +187,81 @@
             }
         }
 
-                // دالة عزل الخلفية المحدثة والمحمية من مشاكل السيرفرات السحابية
+        // محرك ذكاء اصطناعي خفيف ومستقر جداً للمواقع السحابية الثابتة
         async function runLocalAI() {
             const file = bgInput.files[0];
             if (!file) return;
 
-            splashTitle.innerText = "✨ ذكاء اصطناعي محلي: جاري عزل الخلفية بدقة...";
+            splashTitle.innerText = "✨ ذكاء اصطناعي: جاري عزل ومسح الخلفية...";
             splashFileName.innerText = `📄 ملف: ${file.name}`;
-            splashProgressBar.style.width = '10%';
+            splashProgressBar.style.width = '20%';
             splashScreen.style.display = 'flex';
 
             try {
-                let progressWidth = 10;
-                const progressInterval = setInterval(() => {
-                    if(progressWidth < 85) { progressWidth += 3; splashProgressBar.style.width = progressWidth + '%'; }
-                }, 300);
-
-                // التعديل هنا: تمرير روابط الموديلات المفتوحة لتجاوز حظر الأمان (CORS)
-                const imageBlob = await imglyBackgroundRemoval(file, {
-                    publicPath: "https://jsdelivr.net",
-                    progress: (handle, current, total) => {
-                        let realProgress = Math.round((current / total) * 100);
-                        if (realProgress > 0) {
-                            clearInterval(progressInterval);
-                            splashProgressBar.style.width = realProgress + '%';
+                // تحويل الملف المرفوع لعنصر صورة متوافق مع محرك الأجسام
+                const img = new Image();
+                img.src = URL.createObjectURL(file);
+                
+                img.onload = async function() {
+                    splashProgressBar.style.width = '40%';
+                    // تحميل نموذج التعرف على الأجسام الخفيف والمستقر
+                    const net = await bodyPix.load({
+                        architecture: 'MobileNetV1',
+                        outputStride: 16,
+                        multiplier: 0.75,
+                        quantBytes: 2
+                    });
+                    
+                    splashProgressBar.style.width = '70%';
+                    // معالجة الأجسام وعزل الخلفية
+                    const segmentation = await net.segmentPerson(img);
+                    
+                    // إنشاء لوحة كانفاس شفافة لرسم النتيجة بدون خلفية
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    
+                    const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    const data = imgData.data;
+                    
+                    // تحويل كل نقاط الخلفية إلى شفافة بالكامل
+                    for (let i = 0; i < data.length; i += 4) {
+                        if (segmentation.data[i / 4] === 0) {
+                            data[i + 3] = 0; // مسح الخلفية بجعل الشفافية صفر
                         }
                     }
-                });
+                    
+                    ctx.putImageData(imgData, 0, 0);
+                    splashProgressBar.style.width = '100%';
+                    
+                    // تنزيل فوري للملف الناتج الشفاف
+                    canvas.toBlob(function(blob) {
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = 'no_bg_' + file.name.split('.')[0] + '.png';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                        
+                        setTimeout(() => { splashScreen.style.display = 'none'; }, 500);
+                    }, 'image/png');
+                };
 
-                clearInterval(progressInterval);
-                splashProgressBar.style.width = '100%';
-
-                const url = URL.createObjectURL(imageBlob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'no_bg_' + file.name.split('.')[0] + '.png';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-
-                setTimeout(() => { splashScreen.style.display = 'none'; }, 600);
             } catch (error) {
                 console.error(error);
-                alert("تم رصد تحديث في المتصفح، يرجى إعادة المحاولة أو تجربة صورة أخرى حجمها أصغر.");
+                alert("يرجى المحاولة مرة أخرى بصورة تحتوي على أشخاص أو عناصر واضحة.");
                 splashScreen.style.display = 'none';
             }
         }
 
-
-        // إتاحة الدوال للنطاق العام ليتعرف عليها الـ HTML فوراً
         window.runLocalCompression = runLocalCompression;
         window.runLocalAI = runLocalAI;
     </script>
 </body>
+</html>
+
 </html>
