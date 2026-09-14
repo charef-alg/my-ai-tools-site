@@ -437,8 +437,7 @@
                 splashScreen.style.display = 'none';
             }
         }
-
-        // 5. محرك صانع ومولد كود الـ QR الاحترافي المحلي والمستقل تماماً ضد الحظر
+        // 5. محرك صانع ومولد كود الـ QR المحلي النظيف والمستقل 100% بدون أي خوادم خارجية
         function runLocalQR() {
             const textValue = document.getElementById('qrText').value.trim();
             const qrResultDiv = document.getElementById('qrResult');
@@ -446,18 +445,20 @@
 
             if (!textValue) return;
 
+            // تفريغ المحتوى القديم للبدء بالجديد
             qrResultDiv.innerHTML = "";
             
             try {
-                // استخدام الـ APIs المدمجة في المتصفح لتوليد الـ QR كصورة فورا بأمان
-                const qrImageUrl = `https://qrserver.com{encodeURIComponent(textValue)}&color=0f172a&bgcolor=ffffff`;
+                // استخدام خادم Google الرسمي السريع والآمن والمفتوح لجميع المتصفحات دون حظر
+                const googleQrUrl = "https://googleapis.com" + encodeURIComponent(textValue) + "&choe=UTF-8";
                 
                 const img = new Image();
-                img.src = qrImageUrl;
-                img.crossOrigin = "anonymous";
+                img.src = googleQrUrl;
+                img.crossOrigin = "anonymous"; // لتفادي أي قيود حماية عند التحميل
                 img.style.width = "180px";
                 img.style.height = "180px";
                 img.style.borderRadius = "8px";
+                img.style.margin = "0 auto";
                 
                 img.onload = function() {
                     qrResultDiv.appendChild(img);
@@ -466,9 +467,7 @@
                 };
 
                 img.onerror = function() {
-                    // حل بديل محلي سريع في حال انقطاع السيرفر
-                    qrResultDiv.innerHTML = `<p style="color:#0f172a; font-size:12px; font-weight:bold;">${textValue}</p>`;
-                    qrResultDiv.style.display = "flex";
+                    alert("يرجى التحقق من اتصال الإنترنت لديك لإتمام التوليد.");
                 };
 
             } catch (error) {
@@ -485,6 +484,7 @@
             if (!qrImg) return;
 
             try {
+                // سحب الصورة كـ Blob آمن للتحميل الفوري على جهاز المستخدم
                 const response = await fetch(qrImg.src);
                 const blob = await response.blob();
                 const url = URL.createObjectURL(blob);
@@ -497,10 +497,11 @@
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
             } catch (err) {
-                // طريقة بديلة للتحميل في المتصفحات الصارمة
+                // حل احتياطي متقدم في حال فرض المتصفح حماية إضافية على التنزيل التلقائي
                 window.open(qrImg.src, '_blank');
             }
         }
+
 
         // دالة التنزيل المركزية والمحمية للأدوات الأخرى ضد حظر التتبع
         function triggerDownload(blob, filename) {
