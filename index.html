@@ -12,16 +12,19 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة فوتو دوت كوم | أدوات تعديل وتحسين الصور بالذكاء الاصطناعي المحلي</title>
+    <title>منصة فوتو دوت كوم | أدوات ذكية لتعديل الصور وتوليد كود QR محلياً</title>
     <!-- وسوم تهيئة محركات البحث (SEO Meta Tags) -->
-    <meta name="description" content="موقع فوتو دوت كوم هو منصة مجانية وسريعة لضغط حجم الصور، وعزل الخلفيات، وتحويل صيغ الصور، وتغيير أبعادها وتحسين جودتها أونلاين محلياً بأعلى جودة ممكنة ودون الحظر الأمني.">
-    <meta name="keywords" content="ضغط الصور, تقليل حجم الصور, إزالة الخلفية, عزل الخلفية, تحويل صيغ الصور, تغيير مقاسات الصور, تحسين جودة الصور, توضيح الصور الباهتة, تعديل الصور أونلاين">
+    <meta name="description" content="موقع فوتو دوت كوم هو منصة مجانية وسريعة لضغط حجم الصور، وعزل الخلفيات، وتحويل صيغ الصور، وتغيير أبعادها وتوليد رموز QR أونلاين محلياً بأعلى جودة ممكنة.">
+    <meta name="keywords" content="ضغط الصور, تقليل حجم الصور, إزالة الخلفية, عزل الخلفية, مسح خلفية الصورة, تحويل صيغ الصور, تغيير مقاسات الصور, صناعة كود QR, توليد qr code, تعديل الصور أونلاين">
     <meta name="author" content="فوتو دوت كوم">
     
     <!-- وسوم Open Graph -->
-    <meta property="og:title" content="عدّل وصغّر وحسّن صورك بالذكاء الاصطناعي مجاناً | فوتو دوت كوم">
-    <meta property="og:description" content="منصة سريعة ومجانية تماماً لضغط حجم الصور، مسح الخلفيات، تغيير الأبعاد، تحويل الصيغ وتحسين الجودة بنقرة واحدة محلياً في جهازك وبأمان تام.">
+    <meta property="og:title" content="عدّل وصغّر صورك واصنع كود QR مجاناً | فوتو دوت كوم">
+    <meta property="og:description" content="منصة سريعة ومجانية تماماً لضغط حجم الصور، مسح الخلفيات، تغيير الأبعاد، تحويل الصيغ وتوليد رموز QR بنقرة واحدة محلياً في جهازك وبأمان تام.">
     <meta property="og:type" content="website">
+
+    <!-- استدعاء مكتبة توليد الـ QR الآمنة والمصرحة للمتصفحات الحديثة -->
+    <script src="https://cloudflare.com"></script>
 
     <style>
         body {
@@ -44,7 +47,7 @@
             align-items: center;
         }
         .logo { font-size: 22px; font-weight: 900; color: #38bdf8; }
-        .container { max-width: 1100px; width: 90%; margin: 30px auto; text-align: center; }
+        .container { max-width: 1000px; width: 90%; margin: 30px auto; text-align: center; }
         h1 { font-size: 38px; font-weight: 800; margin-bottom: 10px; color: #ffffff; }
         .subtitle { color: #94a3b8; font-size: 16px; margin-bottom: 30px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
@@ -55,13 +58,16 @@
         .file-input-wrapper { background-color: #0f172a; border: 1px dashed #475569; border-radius: 10px; padding: 12px; margin-bottom: 15px; position: relative; text-align: center; }
         .file-input-wrapper input[type="file"] { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
         .file-label { font-size: 12.5px; color: #cbd5e1; }
-        .select-input, .number-input { width: 100%; padding: 10px; background-color: #0f172a; border: 1px solid #475569; border-radius: 8px; color: #fff; font-size: 13px; margin-bottom: 15px; box-sizing: border-box; }
+        .select-input, .number-input, .text-input { width: 100%; padding: 11px; background-color: #0f172a; border: 1px solid #475569; border-radius: 8px; color: #fff; font-size: 13px; margin-bottom: 15px; box-sizing: border-box; }
         .btn { width: 100%; background: linear-gradient(to right, #2563eb, #3b82f6); color: white; border: none; padding: 12px; font-size: 13.5px; font-weight: 600; border-radius: 10px; cursor: pointer; transition: background 0.2s; }
         .btn:hover { background: #2563eb; }
         .btn-emerald { background: linear-gradient(to right, #059669, #10b981); }
         .btn-purple { background: linear-gradient(to right, #7c3aed, #a855f7); }
         .btn-amber { background: linear-gradient(to right, #d97706, #f59e0b); }
         .btn-rose { background: linear-gradient(to right, #e11d48, #f43f5e); }
+        
+        /* حاوي لعرض كود الـ QR الناتج داخل الكارت بشكل منسق */
+        #qrResult { display: flex; justify-content: center; background: white; padding: 12px; border-radius: 8px; margin-bottom: 15px; min-height: 128px; align-items: center; }
         
         .splash-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(15, 23, 42, 0.9); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; }
         .splash-card { background-color: #1e293b; border: 1px solid #334155; padding: 40px; border-radius: 24px; width: 90%; max-width: 450px; text-align: center; }
@@ -101,10 +107,10 @@
         <!-- المساحة الإعلانية العلوية -->
         <div class="ads-box ads-top">مساحة إعلانية مخصصة (جوجل أدسينس - 728x90)</div>
 
-        <h1>عدّل وحسّن صورك بالذكاء الاصطناعي في ثوانٍ</h1>
-        <p class="subtitle">منصة سريعة ومجانية تماماً لضغط الصور، وتغيير المقاسات، وتحويل الصيغ، وتحسين الجودة محلياً.</p>
+        <h1>عدّل صورك واصنع أكواد QR في ثوانٍ</h1>
+        <p class="subtitle">منصة سريعة ومجانية تماماً لضغط الصور، وتغيير المقاسات، وعزل الخلفيات، وتوليد رموز QR بجودة احترافية.</p>
 
-        <!-- شبكة كروت الأدوات الخمسة المحدثة -->
+        <!-- شبكة كروت الأدوات الأربعة المحدثة -->
         <div class="grid">
             
             <!-- 1. كارت أداة ضغط الصور المحلي -->
@@ -137,7 +143,7 @@
                 </form>
             </div>
 
-            <!-- 3. كارت أداة تحويل صيغ الصور الشاملة (المطورة) -->
+            <!-- 3. كارت أداة تحويل صيغ الصور الشاملة -->
             <div class="card">
                 <div>
                     <h2>3. تحويل صيغ الصور الشامل</h2>
@@ -176,18 +182,17 @@
                 </form>
             </div>
 
-            <!-- 5. كارت أداة تحسين جودة وتوضيح الصور (الجديدة) -->
-            <div class="card">
+            <!-- 5. كارت أداة صانع كود الـ QR الاحترافي (البديل الفعال والممتاز) -->
+            <div class="card" style="grid-column: 1 / -1; max-width: 500px; margin: 0 auto; width: 100%;">
                 <div>
-                    <h2>5. تحسين جودة وتوضيح الصور</h2>
-                    <p>أبرز التفاصيل المخفية وزد من حدة الألوان والوضوح للصور الباهتة والمشوشة محلياً 100% بنقرة واحدة.</p>
+                    <h2>5. صانع أكواد الاستجابة السريعة (QR Code)</h2>
+                    <p>حوّل الروابط، النصوص، أو حساباتك إلى رمز QR احترافي فوري مع إمكانية تنزيله كملف صورة عالي الجودة مجاناً.</p>
                 </div>
-                <form id="enhanceForm" onsubmit="event.preventDefault(); window.runLocalEnhance();">
-                    <div class="file-input-wrapper">
-                        <input type="file" id="enhanceInput" accept="image/*" required>
-                        <span class="file-label" id="enhanceLabel">🌟 اختر صورة باهتة لتحسينها...</span>
-                    </div>
-                    <button type="submit" id="enhanceBtn" class="btn btn-rose">تحسين الجودة وزيادة الحدة ✨</button>
+                <form id="qrForm" onsubmit="event.preventDefault(); window.runLocalQR();">
+                    <input type="text" id="qrText" placeholder="اكتب الرابط أو النص هنا لإنشاء الكود..." class="text-input" required>
+                    <div id="qrResult" style="display:none;"></div>
+                    <button type="submit" id="qrBtn" class="btn btn-rose">توليد رمز الـ QR الفوري ✨</button>
+                    <button type="button" id="qrDownloadBtn" class="btn btn-emerald" style="display:none; margin-top:10px;" onclick="window.downloadQR();">تنزيل رمز الـ QR كصورة 📁</button>
                 </form>
             </div>
 
@@ -201,13 +206,13 @@
     <div style="max-width: 800px; margin: 50px auto 20px auto; text-align: right; padding: 25px; background-color: #1e293b; border: 1px solid #334155; border-radius: 16px; line-height: 1.8;">
         <h3 style="color: #38bdf8; margin-top: 0; font-size: 18px; font-weight: 700;">حول منصة فوتو دوت كوم</h3>
         <p style="color: #cbd5e1; font-size: 13.5px; margin-bottom: 15px;">
-            موقع <strong>فوتو دوت كوم</strong> هو منصة رقمية متكاملة توفر حلولاً مجانية وسريعة وسهلة لتعديل الصور وتحسين جودتها أونلاين مجاناً لجميع المصممين، وأصحاب المتاجر الإلكترونية، والمدونين، وصناع المحتوى. تم بناء موقعنا ليعتمد بشكل كلي على تقنيات المعالجة الذاتية والمحلية المتقدمة داخل متصفح المستخدم، مما يتيح تلبية متطلباتك فوراً وبحماية مطلقة لخصوصية ملفاتك الشخصية.
+            موقع <strong>فوتو دوت كوم</strong> هو منصة رقمية متكاملة توفر حلولاً مجانية وسريعة وسهلة لتعديل الصور وتجهيزها أونلاين مجاناً لجميع المصممين، وأصحاب المتاجر الإلكترونية، والمدونين، وصناع المحتوى. تم بناء موقعنا ليعتمد بشكل كلي على تقنيات المعالجة الذاتية والمحلية المتقدمة داخل متصفح المستخدم، مما يتيح تلبية متطلباتك فوراً وبحماية مطلقة لخصوصية ملفاتك الشخصية.
         </p>
         <h4 style="color: #ffffff; font-size: 14px; margin-bottom: 5px; font-weight: 600;">لماذا تعد منصتنا الخيار الأفضل لك؟</h4>
         <ul style="color: #94a3b8; font-size: 13px; margin-top: 0; padding-right: 20px;">
             <li><strong>خصوصية وأمان 100%:</strong> تتم جميع العمليات محلياً وعبر كارت الشاشة والمعالج الخاص بجهازك، دون رفع أي صورة أو حفظها في أي خادم خارجي على الإنترنت.</li>
             <li><strong>أدوات متطورة ومجانية:</strong> يتيح لك الموقع ضغط الصور، وتغيير أبعادها بدقة تامة، وتحويل الصيغ لجميع الامتدادات مثل WebP و PNG، ومسح الخلفيات آلياً بالكامل لتوليد ملفات PNG شفافة واحترافية.</li>
-            <li><strong>تحسين الصور الباهتة:</strong> نوفر أداة ذكية تعمل على زيادة وضوح وحدة الصور المضببة وتصفية تفاصيلها العميقة فوراً لمساعدتك على تقديم أفضل تجربة بصرية.</li>
+            <li><strong>إنشاء رموز الـ QR مجاناً:</strong> نوفر أداة ذكية وموثوقة لصناعة أكواد الاستجابة السريعة لمساعدة أصحاب الأعمال التجارية والمطاعم على مشاركة روابطهم وتسهيل وصول زوارهم محلياً.</li>
         </ul>
     </div>
 
@@ -218,8 +223,7 @@
         </p>
         <p>© 2026 جميع الحقوق محفوظة لـ فوتو دوت كوم. صُنع بالكامل ليعمل بأمان وبدون حظر أو تعقيد أمني.</p>
     </footer>
-
-        <script>
+    <script>
         const splashScreen = document.getElementById('splashScreen');
         const splashTitle = document.getElementById('splashTitle');
         const splashFileName = document.getElementById('splashFileName');
@@ -263,14 +267,6 @@
                         document.getElementById('resizeHeight').value = img.height;
                     }
                 }
-            });
-        }
-
-        const enhanceInput = document.getElementById('enhanceInput');
-        const enhanceLabel = document.getElementById('enhanceLabel');
-        if (enhanceInput) {
-            enhanceInput.addEventListener('change', function() {
-                if(this.files.length > 0) enhanceLabel.innerText = "✅ تم اختيار: " + this.files[0].name;
             });
         }
 
@@ -402,7 +398,7 @@
                 splashScreen.style.display = 'none';
             }
         }
-        // 4. محرك تغيير مقاس وأبعاد الصور بدقة يدوياً
+        // 4. محرك تغيير مقاس وأبعاد الصور بدقة
         async function runLocalResize() {
             const file = resizeInput.files[0];
             const targetWidth = parseInt(document.getElementById('resizeWidth').value);
@@ -442,83 +438,61 @@
             }
         }
 
-        // 5. محرك تحسين جودة وتوضيح الصور الباهتة (Sharpen Filter Matrix) محلياً 100%
-        async function runLocalEnhance() {
-            const file = enhanceInput.files[0];
-            if (!file) return;
+        // 5. محرك صانع ومولد كود الـ QR الاحترافي المحلي السريع والفعال 100%
+        let generatedQrBlob = null;
 
-            splashTitle.innerText = "🌟 جاري فحص وتحسين جودة الصورة...";
-            splashFileName.innerText = `📄 ملف: ${file.name}`;
-            splashProgressBar.style.width = '25%';
-            splashScreen.style.display = 'flex';
+        function runLocalQR() {
+            const textValue = document.getElementById('qrText').value.trim();
+            const qrResultDiv = document.getElementById('qrResult');
+            const downloadBtn = document.getElementById('qrDownloadBtn');
+
+            if (!textValue) return;
+
+            // تفريغ المحتوى القديم للبدء بالجديد
+            qrResultDiv.innerHTML = "";
+            qrResultDiv.style.display = "flex";
 
             try {
-                const img = new Image();
-                img.src = URL.createObjectURL(file);
+                // إنشاء كود الاستجابة السريعة بدقة ممتازة وبشكل فوري داخل المتصفح
+                const qrGenerator = new QRCode(qrResultDiv, {
+                    text: textValue,
+                    width: 180,
+                    height: 180,
+                    colorDark: "#0f172a",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
 
-                img.onload = function() {
-                    splashProgressBar.style.width = '50%';
-                    const canvas = document.createElement('canvas');
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0);
-
-                    const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                    const data = imgData.data;
-                    const w = canvas.width;
-                    const h = canvas.height;
-
-                    // تطبيق مصفوفة الالتفاف لزيادة الحدة العميقة للبكسل وتوضيح المظهر الباهت
-                    const weights = [0, -1, 0, -1, 5, -1, 0, -1, 0];
-                    const side = Math.round(Math.sqrt(weights.length));
-                    const halfSide = Math.floor(side / 2);
-                    
-                    const output = ctx.createImageData(w, h);
-                    const dst = output.data;
-
-                    splashProgressBar.style.width = '80%';
-
-                    for (let y = 0; y < h; y++) {
-                        for (let x = 0; x < w; x++) {
-                            const sy = y;
-                            const sx = x;
-                            const dstOff = (y * w + x) * 4;
-                            
-                            let r = 0, g = 0, b = 0;
-                            for (let cy = 0; cy < side; cy++) {
-                                for (let cx = 0; cx < side; cx++) {
-                                    const scy = Math.min(h - 1, Math.max(0, sy + cy - halfSide));
-                                    const scx = Math.min(w - 1, Math.max(0, sx + cx - halfSide));
-                                    const srcOff = (scy * w + scx) * 4;
-                                    const wt = weights[cy * side + cx];
-                                    r += data[srcOff] * wt;
-                                    g += data[srcOff + 1] * wt;
-                                    b += data[srcOff + 2] * wt;
-                                }
-                            }
-                            dst[dstOff] = Math.min(255, Math.max(0, r));
-                            dst[dstOff + 1] = Math.min(255, Math.max(0, g));
-                            dst[dstOff + 2] = Math.min(255, Math.max(0, b));
-                            dst[dstOff + 3] = data[dstOff + 3];
-                        }
+                // إظهار زر التنزيل بعد التوليد مباشرة
+                setTimeout(() => {
+                    const qrImg = qrResultDiv.querySelector('img');
+                    if (qrImg) {
+                        downloadBtn.style.display = "block";
                     }
+                }, 200);
 
-                    ctx.putImageData(output, 0, 0);
-                    splashProgressBar.style.width = '100%';
-                    
-                    canvas.toBlob(function(blob) {
-                        triggerDownload(blob, 'enhanced_' + file.name);
-                    }, file.type);
-                };
             } catch (error) {
                 console.error(error);
-                alert("حدث خطأ أثناء تحسين جودة الصورة.");
-                splashScreen.style.display = 'none';
+                alert("حدث خطأ أثناء توليد رمز الـ QR.");
             }
         }
 
-        // دالة التنزيل المركزية والآمنة 100% ضد حظر التتبع
+        // دالة مخصصة لتحويل رمز الـ QR لصورة قابلة للتنزيل على جهاز الزائر بنقرة واحدة
+        function downloadQR() {
+            const qrResultDiv = document.getElementById('qrResult');
+            const qrImg = qrResultDiv.querySelector('img');
+            
+            if (!qrImg) return;
+
+            const a = document.createElement('a');
+            a.href = qrImg.src;
+            a.download = 'photo_com_qr_' + Date.now() + '.png';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        // دالة التنزيل المركزية والمحمية للأدوات الأخرى ضد حظر التتبع
         function triggerDownload(blob, filename) {
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -531,12 +505,13 @@
             setTimeout(() => { splashScreen.style.display = 'none'; }, 500);
         }
 
-        // ربط جميع الدوال بالـ Window لتشغيلها من كروت الـ HTML الثابتة بنجاح
+        // ربط جميع الدوال بنطاق المتصفح العام لتعمل من كروت الـ HTML الثابتة فوراً أونلاين
         window.runLocalCompression = runLocalCompression;
         window.runLocalAI = runLocalAI;
         window.runLocalConvert = runLocalConvert;
         window.runLocalResize = runLocalResize;
-        window.runLocalEnhance = runLocalEnhance;
+        window.runLocalQR = runLocalQR;
+        window.downloadQR = downloadQR;
     </script>
 </body>
 </html>
